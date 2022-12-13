@@ -2,14 +2,19 @@
   "name": "soccer_team_manager",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "4.17"
+  },
+  "devDependencies": {
+    "eslint": "6.8",
+    "eslint-config-trybe-backend": "1.0"
   }
 }
