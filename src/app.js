@@ -51,9 +51,9 @@ app.put('/cards/:id', async (req, res) => {
   const { id } = req.params;
   const valueBody = req.body;
 
-  const getFunction = await updateCard(Number(id), { cards: valueBody });
+  const getFunction = await updateCard(Number(id), valueBody);
 
-  res.status(201).json(getFunction);
+  res.status(200).json({ card: getFunction });
 });
 
 app.delete('/cards/:id', async (req, res) => {

@@ -3,7 +3,8 @@ const path = require('path');
 
 const readCards = async () => {
   const data = await fs.readFile(path.resolve(__dirname, '../cards.json'));
-  return data;
+  const jsonData = JSON.parse(data);
+  return jsonData;
 };
 
 const setNewCards = async (newCard) => {
