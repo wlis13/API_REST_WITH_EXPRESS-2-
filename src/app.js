@@ -21,27 +21,28 @@ app.get('/', (req, res) => {
 });
 
 app.post('/teams', (req, res) => {
-  const newTeam = { ...req.body }
+  const newTeam = { ...req.body };
   teams.push(newTeam);
-  res.status(201).json({ team: newTeam })
+  res.status(201).json({ team: newTeam });
 });
 
 app.get('/teams/:id', (req, res) => {
-  res.status(200).json({ "team": "team" })
+  res.status(200).json({ team: 'team' });
 });
 
-app.put('/teams/:id', (req, res) => {
-  const { id } = req.params;
-  const { name, initials } = req.body;
+app.put('/teams/:id/:newName/:newInitials', (req, res) => {
+  const { id, newName, newInitials } = req.params;
+  // const { name, initials } = req.body;
 
   const updateTeam = teams.find((iten) => iten.id === Number(id));
 
   if (!updateTeam) {
-    res.status(404).json({ message: "Team not found" })
+    res.status(404).json({ message: 'Team not found' });
+    return;
   }
 
-  updateTeam.name = name;
-  updateTeam.initials = initials;
+  updateTeam.name = newName;
+  updateTeam.initials = newInitials;
   res.status(200).json({ updateTeam });
 });
 
