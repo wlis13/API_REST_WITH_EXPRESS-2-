@@ -1,4 +1,5 @@
 const express = require('express');
+const { deleteCard, updateCard } = require('./utils');
 
 const app = express();
 app.use(express.json());
@@ -46,11 +47,19 @@ app.put('/teams/:id/:newName/:newInitials', (req, res) => {
   res.status(200).json({ updateTeam });
 });
 
-app.delete('/teams/:id', (req, res) => {
+app.put('/cards/:id', async (req, res) => {
   const { id } = req.params;
-  const arrayPosition = teams.find((iten) => iten.id === Number(id));
-  teams.splice(arrayPosition, 1);
-  res.status(200).end();
+  const valueBody = req.body;
+
+  const getFunction = await updateCard(Number(id), { cards: valueBody });
+
+  res.status(201).json(getFunction);
+});
+
+app.delete('/cards/:id', async (req, res) => {
+  const { id } = req.params;
+  await deleteCard(Number(id));
+  res.status(204).end();
 });
 
 module.exports = app;
