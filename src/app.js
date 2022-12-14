@@ -26,8 +26,8 @@ app.post('/teams', (req, res) => {
   res.status(201).json({ team: newTeam })
 });
 
-app.get('/teams', (req, res) => {
-  res.status(200).json(teams)
+app.get('/teams/:id', (req, res) => {
+  res.status(200).json({ "team": "team" })
 });
 
 app.put('/teams/:id', (req, res) => {
@@ -43,6 +43,13 @@ app.put('/teams/:id', (req, res) => {
   updateTeam.name = name;
   updateTeam.initials = initials;
   res.status(200).json({ updateTeam });
-})
+});
+
+app.delete('/teams/:id', (req, res) => {
+  const { id } = req.params;
+  const arrayPosition = teams.find((iten) => iten.id === Number(id));
+  teams.splice(arrayPosition, 1);
+  res.status(200).end();
+});
 
 module.exports = app;
