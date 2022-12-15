@@ -56,4 +56,12 @@ app.delete('/movies/:id', async (req, res) => {
   res.status(202).json(movieDelete);
 });
 
+app.get('/search', async (req, res) => {
+  const test = req.query.q;
+  const getMovies = await readMovies();
+
+  const filterByMovies = getMovies.filter((iten) => iten.movie === test);
+  res.status(200).send(filterByMovies);
+});
+
 module.exports = app;
