@@ -10,7 +10,13 @@ const readCards = async () => {
 const setNewCards = async (newCard) => {
   const getOldCards = await readCards();
   const newGroupCards = [...getOldCards, newCard];
-  await fs.writeFile(path.resolve(__dirname, '../cards.json'), newGroupCards);
+  const jsonGroupCard = JSON.stringify(newGroupCards);
+  try {
+    await fs.writeFile(path.resolve(__dirname, '../cards.json'), jsonGroupCard);
+    return newGroupCards;
+  } catch (error) {
+    console.error(`Não foi possível executar a atulização ${ error }`);
+  }
 };
 
 const updateCard = async (id, newCards) => {
@@ -36,9 +42,10 @@ const updateCard = async (id, newCards) => {
 const deleteCard = async (id) => {
   const getCards = await readCards();
   const newCards = getCards.filter((card) => card.id !== id);
-  const newCardsJson = newCards;
+  const newCard = newCards;
+  const jsonCard = JSON.stringify(newCard);
   try {
-    await fs.writeFile(path.resolve(__dirname, '../cards.json'), newCardsJson);
+    await fs.writeFile(path.resolve(__dirname, '../cards.json'), jsonCard);
   } catch (error) {
     console.error('Não foi possível deletar esse card!');
   }

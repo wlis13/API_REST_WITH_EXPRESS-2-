@@ -1,5 +1,5 @@
 const express = require('express');
-const { deleteCard, updateCard } = require('./utils');
+const { deleteCard, updateCard, setNewCards } = require('./utils');
 
 const app = express();
 app.use(express.json());
@@ -54,6 +54,12 @@ app.put('/cards/:id', async (req, res) => {
   const getFunction = await updateCard(Number(id), valueBody);
 
   res.status(200).json({ card: getFunction });
+});
+
+app.put('/newCard', async (req, res) => {
+  const values = req.body;
+  await setNewCards(values);
+  return res.status(201).json({ new: values });
 });
 
 app.delete('/cards/:id', async (req, res) => {

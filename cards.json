@@ -1,6 +1,7 @@
 [
-  { "name": "Dark Magician", "type": "Spellcard", "stars": 7 },
-  { "name": "Seyariu", "type": "Dragon", "stars": 6 },
-  { "name": "Summoned Skull", "type": "Fiend", "stars": 7 },
-  { "name": "Blue eyes ultimate dragon", "type": "Dragon", "stars": 12 }
+  { "id": 1, "name": "summoned Skull", "type": "Fiend", "stars": 7 },
+  { "id": 3, "name": "Bickuribox", "type": "Fiend", "stars": 6 },
+  { "id": 4, "name": "Dark Magician", "type": "Spellcard", "stars": 7 },
+  { "id": 5, "name": "Curse of dragon", "type": "Dragon", "stars": 6 },
+  { "id": 6, "name": "Thousand Dragon", "type": "Dragon", "stars": 5 }
 ]
