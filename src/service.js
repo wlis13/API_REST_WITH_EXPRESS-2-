@@ -33,4 +33,19 @@ app.post('/movies', async (req, res) => {
   return res.status(201).json(allMovies);
 });
 
+app.put('/movies/:id', async (req, res) => {
+  const { id } = req.params;
+  const newMovie = req.body;
+  const getMovies = await readMovies();
+  const allNewMovie = { id, newMovie };
+
+  const updateMovie = getMovies.reduce((acomMovie, actualMovie) => {
+    if (actualMovie.id === Number(id)) {
+      return [...acomMovie, allNewMovie];
+    }
+    return [...acomMovie, actualMovie];
+  }, []);
+  res.status(202).json(updateMovie);
+});
+
 module.exports = app;
